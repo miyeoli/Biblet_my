@@ -13,7 +13,7 @@
 <!-- 		<typeAlias alias="appraisal" type="org.exam.www.model.AppraisalVO"/> -->
 <!-- 		<typeAlias alias="bookinfo" type="org.exam.www.model.BookinfoVO"/> -->
 <!-- 		<typeAlias alias="bookshelf" type="org.exam.www.model.BookshelfVO"/> -->
-		<typeAlias alias="user" type="org.exam.www.model.UserVO" />
+		<typeAlias alias="memberVO" type="org.exam.www.model.MemberVO" />
 	</typeAliases>
 	<!-- sql문에서 자료형 지정할때 쓰는 이름 -->
 </configuration>

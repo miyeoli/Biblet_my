@@ -63,16 +63,6 @@
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 	
-	<bean id="userDAO" class="org.exam.www.repository.UserDAOImpl">
-		<constructor-arg ref="sqlSessionTemplate" />
-	</bean>
-	
-	<bean id="userService"
-		class="org.exam.www.service.UserServiceImpl">
-		<property name="userDAO" ref="userDAO"></property>
-	</bean>
-	
-	
 	
 		
 </beans>

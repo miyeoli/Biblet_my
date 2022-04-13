@@ -1,12 +1,16 @@
 package org.exam.www.service;
 
-import javax.servlet.http.HttpSession;
 
-import org.exam.www.model.UserVO;
-
+//아이디와 비번 일치 시 AuthInfo 객체 생성
 public interface UserService {
-	
-	public String loginCheck(UserVO user, HttpSession session);
 
+	
+	//public AuthInfo authenticate(String mem_id, String mem_pass);
+
+
+	public AuthInfo authenticate(String mem_id, String mem_pass) throws Exception;
+		
+		 
+		
 
 }

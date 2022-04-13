@@ -1,10 +1,7 @@
 package org.exam.www.model;
 
-import java.sql.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-public class UserVO {
+public class MemberVO {
 
 	private int mem_num;//sequence.nextval로 넣을 것
 	private String mem_id;
@@ -14,9 +11,9 @@ public class UserVO {
 	private String authstaus;
 	
 
-	public UserVO() {}
+	public MemberVO() {}
 	
-	public UserVO(String mem_id,String mem_pass,String mem_email,String mem_name,String authstaus) {
+	public MemberVO(String mem_id,String mem_pass,String mem_email,String mem_name,String authstaus) {
 		this.mem_id=mem_id;
 		this.mem_pass=mem_pass;
 		this.mem_email=mem_email;
@@ -79,6 +76,15 @@ public class UserVO {
 		return "UserVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_pass=" + mem_pass + ", mem_email="
 				+ mem_email + ", mem_name=" + mem_name + ", authstaus=" + authstaus + "]";
 	}
+	
+	//비번 일치 여부
+    public boolean matchPassword(String pw) {
+        return this.mem_pass.equals(pw);
+    }
+
+
+
+
 
 	
 

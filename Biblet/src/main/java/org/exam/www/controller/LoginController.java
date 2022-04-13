@@ -1,16 +1,19 @@
 package org.exam.www.controller;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.exam.www.model.UserVO;
+import org.exam.www.service.AuthInfo;
 import org.exam.www.service.UserService;
+import org.exam.www.util.IdPasswordMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginController {
@@ -18,42 +21,62 @@ public class LoginController {
 	private UserService userService;
 	
 	@Autowired
-	public LoginController(UserService userService) {
+	public void setuserService(UserService userService) {
 		this.userService = userService;
 	}
 	
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public String form() {
-		System.out.println("로그인");
-		return "loginForm";
-	}
-	@RequestMapping(method=RequestMethod.POST)
-	public ModelAndView submit(@ModelAttribute UserVO user, HttpSession session) {
-		String mem_name = userService.loginCheck(user, session);
-		ModelAndView mav = new ModelAndView();
-		
-		if (mem_name != null) { // 로그인 성공 시
-			System.out.println("성공");
-			mav.setViewName("/loginSuccess"); // 뷰의 이름
-		} else { // 로그인 실패 시
-			System.out.println("실패");
-			mav.setViewName("/loginForm"); 		
-		
-		} 
-		//쿠키 세션
-				//예외 처리 
-				//회원 정보가 없을 때
-				//아이디와 비번이 일치하지 않을 때
-				//이메일 인증 authstatus = 1 로그인 authstatus = 1 X 이메일 인증 안됨 에러 메세지
-				return mav;			
 
-	}
+	@RequestMapping(method=RequestMethod.GET)
+    public String form(LoginCommand loginCommand,
+                    @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
+		
+		if(rememberCookie!=null) {
+            loginCommand.setMem_id(rememberCookie.getValue());
+            loginCommand.setRememberId(true);
+        }
+        
+        return "loginForm";
+    }
+
 	
+	@RequestMapping(method=RequestMethod.POST)
+	public String submit(@Validated LoginCommand loginCommand,
+            HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
+		new LoginCommandValidator().validate(loginCommand, errors);
+
+		if(errors.hasErrors()) {
+			return "loginForm";
+		}
+		
+		try {
+			System.out.println(loginCommand.getMem_id());
+			System.out.println(loginCommand.getMem_pass());
+			
+			AuthInfo authInfo = userService.authenticate(
+					loginCommand.getMem_id(), 
+					loginCommand.getMem_pass());
+			
+			session.setAttribute("authInfo", authInfo);
+			
+			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getMem_id());
+			rememberCookie.setPath("/");
+			if(loginCommand.isRememberId()) {
+			rememberCookie.setMaxAge(60*60*24*7);
+			} else {
+			rememberCookie.setMaxAge(0);
+			}
+			response.addCookie(rememberCookie);
+			
+			return "loginSuccess";
+			
+			} catch (IdPasswordMatchingException e) {
+			errors.rejectValue("pw", "notMatch", "아이디와 비밀번호가 맞지않습니다.");
+			return "loginForm";
+			}
+
+		}
 	
 	
 
 	
 }
-
-	
