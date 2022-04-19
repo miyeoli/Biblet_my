@@ -25,35 +25,15 @@ public class UserServiceImpl implements UserService{
         }
         return new AuthInfo(member.getMem_num(), member.getMem_id(), member.getMem_name());
     }
-	
-	/*
-	public AuthInfo authenticate(String mem_id, String mem_pass) {
-		MemberVO member = (MemberVO) memberDAO.selectById(mem_id);
-		//member가 null일 경우 
-		if(member == null) {
-			throw new IdPasswordMatchingException();
-		}
-		//비번 일치 여부 확인
-		if(!member.matchPassword(mem_pass)) {
-			throw new IdPasswordMatchingException();
-		}
-		return new AuthInfo(member.getMem_num(), member.getMem_id(), member.getMem_name());
-	}
-	*/
 
-
-	/*
+	//findbyid
 	@Override
-	public String loginCheck(MemberVO user, HttpSession session) {
-		String mem_name = memberDAO.loginCheck(user);
-		 if (mem_name != null) { // 세션 변수 저장
-		  session.setAttribute("mem_id", user.getMem_id());
-		  session.setAttribute("mem_name", mem_name);
-		}
-		 return mem_name; 
+	public MemberVO findById(MemberVO member) {
+		// TODO Auto-generated method stub
+		return memberDAO.findById(member);
 	}
-	*/
-		 
+
+
 		
 
 }
