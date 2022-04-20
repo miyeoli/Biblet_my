@@ -7,4 +7,12 @@
  	<select id="loginCheck" resultType="String">
   		SELECT * FROM member WHERE mem_id=#{mem_id} AND mem_pass=#{mem_pass}
  	</select>
+ 	
+ 	<!-- 인기 도서 -->
+ 	<select id="starbook" resultType="int">
+ 	SELECT bookshelf.isbn FROM bookshelf 
+	INNER JOIN appraisal ON bookshelf.book_status_num = appraisal.book_status_num
+	GROUP BY bookshelf.isbn ORDER BY AVG(appraisal.star) DESC DESC
+ 	</select>
+ 	
 </mapper>

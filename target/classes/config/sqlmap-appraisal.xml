@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AppraisalDAO">
+
+	<select id="listComment" parameterType="String" resultType="allCommentByBookCmd">
+	<!--     MEMBER,APPRAISAL 조인     -->
+	<!-- 평가 넘버, 별점, 코멘트, 멤버 아이디 조회  조건 : isbn, 공개  -->
+	SELECT 
+	 appraisal.appraisal_num,
+ 	 appraisal.star,
+ 	 appraisal.book_comment,
+ 	 member.mem_id
+	FROM bookshelf
+	INNER JOIN appraisal ON bookshelf.book_status_num = appraisal.book_status_num
+	INNER JOIN member ON bookshelf.mem_num = member.mem_num
+	WHERE bookshelf.isbn=#{isbn} AND appraisal.co_prv='공개'
+	</select>
+	
+	<select id="starCount" parameterType="String" resultType="Integer">
+	SELECT 
+	 COUNT(appraisal.book_star)
+    FROM appraisal
+    INNER JOIN appraisal ON bookshelf.book_status_num = appraisal.book_status_num
+    WHERE bookshelf.isbn=#{isbn} AND appraisal.co_prv='공개'
+	</select>
+ 	
+ 	
+ 	
+</mapper>

@@ -8,12 +8,12 @@ public class MemberVO {
 	private String mem_pass;
 	private String mem_email;
 	private String mem_name;
-	private String authstatus;
+	private int authstatus;
 	
 
 	public MemberVO() {}
 	
-	public MemberVO(String mem_id,String mem_pass,String mem_email,String mem_name,String authstatus) {
+	public MemberVO(String mem_id,String mem_pass,String mem_email,String mem_name,int authstatus) {
 		this.mem_id=mem_id;
 		this.mem_pass=mem_pass;
 		this.mem_email=mem_email;
@@ -60,11 +60,11 @@ public class MemberVO {
 	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
 	}
-	public String getAuthstatus() {
+	public int getAuthstatus() {
 		return authstatus;
 	}
 
-	public void setAuthstatus(String authstatus) {
+	public void setAuthstatus(int authstatus) {
 		this.authstatus = authstatus;
 	}
 

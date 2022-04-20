@@ -16,7 +16,8 @@
 	<h2>로그인</h2>
 	<form action="<c:url value='/loginForm'/>"  name="loginCommand" method="post">
 	아이디:<input type="text" id="mem_id" name="mem_id"><br>
-	비밀번호:<input type="password" id="mem_pass" name="mem_pass"><br>
+	비밀번호:<input type="password" id="mem_pass" name="mem_pass">
+	<br>
 	<input type="submit" value="로그인">
 	<!-- 회원가입 -->
 	</form>

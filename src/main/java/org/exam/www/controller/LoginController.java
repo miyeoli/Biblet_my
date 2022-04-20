@@ -43,8 +43,6 @@ public class LoginController {
         return "/loginForm";
     }
 
-	
-	
 	@RequestMapping(value="/loginForm",method=RequestMethod.POST)
 	public String submit(@Validated LoginCommand loginCommand, MemberVO member, Model model,
             HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
@@ -100,6 +98,7 @@ public class LoginController {
 
 	}
 	
+	/*
 	
 	//findId
 	
@@ -124,7 +123,7 @@ public class LoginController {
 			return "/findIdForm";
 		}
 		
-		
+		*/
 	
 	
 	/*

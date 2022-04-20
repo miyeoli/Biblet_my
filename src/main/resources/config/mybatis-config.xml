@@ -9,10 +9,9 @@
 		<setting name="useGeneratedKeys" value="false" />
 	</settings>
 	<typeAliases>
-<!-- 		<typeAlias alias="admin" type="org.exam.www.model.AdministratorVO"/> -->
-<!-- 		<typeAlias alias="appraisal" type="org.exam.www.model.AppraisalVO"/> -->
-<!-- 		<typeAlias alias="bookinfo" type="org.exam.www.model.BookinfoVO"/> -->
-<!-- 		<typeAlias alias="bookshelf" type="org.exam.www.model.BookshelfVO"/> -->
+			<!-- <typeAlias alias="admVO" type="org.exam.www.model.AdmVO"/> -->
+			<!-- <typeAlias alias="appraisalVO" type="org.exam.www.model.AppraisalVO"/> -->
+	 		<!-- <typeAlias alias="bookshelfVO" type="org.exam.www.model.BookshelfVO"/> -->
 		<typeAlias alias="memberVO" type="org.exam.www.model.MemberVO" />
 	</typeAliases>
 	<!-- sql문에서 자료형 지정할때 쓰는 이름 -->
