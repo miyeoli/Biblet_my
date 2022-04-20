@@ -26,6 +26,8 @@
 			
 		<input type="text" name="query" id="query" value="${query}" placeholder="제목, 저자 또는 출판사 검색" size=30> 
 		<button id="search">검색</button>
+ 	
+ 	
  	</p>
  	
  	
