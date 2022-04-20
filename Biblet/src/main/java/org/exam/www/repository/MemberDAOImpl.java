@@ -1,5 +1,6 @@
 package org.exam.www.repository;
 
+
 import org.exam.www.model.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,14 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO selectById(String mem_id) {
 		return sqlSessionTemplate.selectOne("selectById", mem_id);
 	}
-
-
-	/*
+	
+	
+	//findbyid
 	@Override
-	public String loginCheck(MemberVO user) {
+	public MemberVO findById(MemberVO member) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne("MemberDAO.findId", member);
 	}
-	*/
 
 
 	
