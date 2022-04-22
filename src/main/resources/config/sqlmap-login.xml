@@ -10,7 +10,7 @@
  	</select>
  	
  	<!-- admin로그인 -->
- 	<select id="selectByAdmin" resultType="memberVO">
+ 	<select id="selectByAdmin" resultType="adminVO">
   		SELECT * FROM member WHERE adm_Id=#{adm_Id}
  	</select>
  	

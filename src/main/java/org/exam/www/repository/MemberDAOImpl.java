@@ -17,13 +17,14 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSessionTemplate.selectOne("selectById", mem_id);
 	}
 	
-	
+	/*
 	//findbyid
 	@Override
 	public MemberVO findById(MemberVO member) {
 		// TODO Auto-generated method stub
 		return sqlSessionTemplate.selectOne("MemberDAO.findId", member);
 	}
+	*/
 
 
 	

@@ -80,7 +80,7 @@ public class LoginController {
 			return "redirect:/main";
 			
 			
-			} catch (IdPasswordMatchingException e) {
+			} catch (IdPasswordNotMatchingException e) {
 				errors.reject("IdPasswordMatching");
 				return "/loginForm";
 			}

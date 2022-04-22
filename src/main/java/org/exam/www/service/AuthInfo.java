@@ -5,7 +5,7 @@ public class AuthInfo {
 	private String mem_id;
 	private String mem_name;
 	
-	public AuthInfo(int num, String mem_id, String mem_name) {
+	public AuthInfo(int mem_num, String mem_id, String mem_name) {
 		this.mem_num = mem_num;
 		this.mem_id = mem_id;
 		this.mem_name = mem_name;

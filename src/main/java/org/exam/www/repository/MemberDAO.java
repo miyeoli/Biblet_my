@@ -10,7 +10,7 @@ public interface MemberDAO {
 	public MemberVO selectById(String mem_id);
 	
 	//이메일로 id 찾기
-	public MemberVO findById(MemberVO member);
+	//public MemberVO findById(MemberVO member);
 
 	//public String loginCheck(MemberVO user);
 

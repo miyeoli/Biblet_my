@@ -12,7 +12,7 @@ public interface UserService {
 	public AuthInfo authenticate(String mem_id, String mem_pass) throws Exception;
 		
 	//findbyid	 
-	public MemberVO findById(MemberVO member);
+	//public MemberVO findById(MemberVO member);
 	
 
 }

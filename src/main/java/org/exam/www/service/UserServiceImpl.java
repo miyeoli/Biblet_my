@@ -5,7 +5,6 @@ import org.exam.www.model.MemberVO;
 import org.exam.www.repository.MemberDAO;
 import org.exam.www.util.IdPasswordNotMatchingException;
 import org.springframework.beans.factory.annotation.Autowired;
-//아이디와 비번 일치 시 AuthInfo 객체 생성
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,12 +25,14 @@ public class UserServiceImpl implements UserService{
         return new AuthInfo(member.getMem_num(), member.getMem_id(), member.getMem_name());
     }
 
+	/*
 	//findbyid
 	@Override
 	public MemberVO findById(MemberVO member) {
 		// TODO Auto-generated method stub
 		return memberDAO.findById(member);
 	}
+	*/
 
 
 		

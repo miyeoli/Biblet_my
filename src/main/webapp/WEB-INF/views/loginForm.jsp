@@ -6,20 +6,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-
-
 <meta charset="UTF-8">
-<title>로그인</title>
+<title><spring:message code="login.title"/></title>
 </head>
 <body>
-	<h2>로그인</h2>
-	<form action="<c:url value='/loginForm'/>"  name="loginCommand" method="post">
-	아이디:<input type="text" id="mem_id" name="mem_id"><br>
-	비밀번호:<input type="password" id="mem_pass" name="mem_pass">
-	<br>
-	<input type="submit" value="로그인">
-	<!-- 회원가입 -->
-	</form>
+	<form:form commandName="loginCommand">
+	<form:errors/>
+	<p>
+		<label>
+		<spring:message code="mem_id"/>
+		<form:input path="mem_id"/>
+		<form:errors path="mem_id"/>
+		</label>
+	</p>
+	<p>
+		<label>
+		<spring:message code="mem_pass"/>
+		<form:input path="mem_pass"/>
+		<form:errors path="mem_pass"/>
+		</label>
+	</p>
+	<p>
+		<label>
+		<spring:message code="rememberId"/>
+		<form:checkbox path="rememberId"/>
+		</label>
+	</p>
+	
+	<input type="submit" value="<spring:message code="login.btn"/>">
+	</form:form>
+
 </body>
 </html>
