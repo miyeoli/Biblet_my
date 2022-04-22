@@ -7,8 +7,8 @@
 
  	<!-- admin로그인 -->
  	<!--  AND ADM_AUTHSTATUS = 1  -->
- 	<select id="selectByAdminId" resultType="adminVO">
-  		SELECT * FROM ADMINISTRATOR WHERE adm_id=#{adm_id}
+ 	<select id="selectByAdminId" parameterType="String" resultType="adminVO">
+  		SELECT * FROM ADMINISTRATOR WHERE adm_id=#{adm_id} AND ADM_AUTHSTATUS = '1'
  	</select>
 
  	

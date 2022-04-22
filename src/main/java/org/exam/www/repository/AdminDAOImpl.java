@@ -14,6 +14,7 @@ public class AdminDAOImpl implements AdminDAO{
 	@Override
 	public AdminVO selectByAdminId(String adm_id) {
 		// TODO Auto-generated method stub
+		System.out.println("여기는 DAOImpl "+adm_id);
 		return sqlSessionTemplate.selectOne("selectByAdminId", adm_id);
 	}
 

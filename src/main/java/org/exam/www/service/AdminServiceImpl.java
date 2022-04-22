@@ -14,12 +14,17 @@ public class AdminServiceImpl implements AdminService{
 
 	@Override
 	public AdminAuthInfo authenticate(String adm_id, String adm_pass) throws Exception {
-		System.out.println("adm_id"+adm_id);
+		System.out.println("adm_id : "+adm_id);
 		AdminVO admin = adminDAO.selectByAdminId(adm_id);
+		
+		System.out.println(admin.getAdm_id());
+		//null 에러.....왜..........왜........왜......................................
 	
+		
+		
         if(admin == null) {
         	System.out.println("정보가 없습니다.");
-            throw new IdPasswordNotMatchingException();
+            //throw new IdPasswordNotMatchingException();
         }
         
         if(!admin.matchPassword(adm_pass)) {

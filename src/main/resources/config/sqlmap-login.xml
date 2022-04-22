@@ -6,7 +6,7 @@
  	
  	<!-- 로그인 -->
  	<select id="selectById" resultType="memberVO">
-  		SELECT * FROM member WHERE mem_id=#{mem_id} AND AUTHSTATUS = 1
+  		SELECT * FROM member WHERE mem_id=#{mem_id} AND AUTHSTATUS = '1'
  	</select>
  	
  	<!-- admin로그인 -->

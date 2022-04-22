@@ -8,12 +8,12 @@ public class MemberVO {
 	private String mem_pass;
 	private String mem_email;
 	private String mem_name;
-	private int authstatus;
+	private String authstatus;
 	
 
 	public MemberVO() {}
 	
-	public MemberVO(String mem_id,String mem_pass,String mem_email,String mem_name,int authstatus) {
+	public MemberVO(String mem_id,String mem_pass,String mem_email,String mem_name,String authstatus) {
 		this.mem_id=mem_id;
 		this.mem_pass=mem_pass;
 		this.mem_email=mem_email;
@@ -60,28 +60,18 @@ public class MemberVO {
 	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
 	}
-	public int getAuthstatus() {
+	public String getAuthstatus() {
 		return authstatus;
 	}
 
-	public void setAuthstatus(int authstatus) {
+	public void setAuthstatus(String authstatus) {
 		this.authstatus = authstatus;
-	}
-
-	
-	
-	@Override
-	public String toString() {
-		return "MemberVO [mem_num=" + mem_num + ", mem_id=" + mem_id + ", mem_pass=" + mem_pass + ", mem_email="
-				+ mem_email + ", mem_name=" + mem_name + ", authstatus=" + authstatus + "]";
 	}
 
 	//비번 일치 여부
     public boolean matchPassword(String pw) {
         return this.mem_pass.equals(pw);
     }
-
-
 
 
 
