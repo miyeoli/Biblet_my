@@ -91,9 +91,11 @@ public class LoginController {
 		//아이디 비번 미 입력 시 입력해 주세요
 		//아이디 비번 틀렸을 때 다시 입력해 주세요
 		//아이디 없을 때 회원 정보가 없습니다.
-		//관리자 로그인 시 관리자 페이지 이동
+
 		
 		//아이디 비번 찾기
+		//아이디 찾기 - 이메일 입력 아이디 확인
+		//비밀번호 찾기 - 이메일 인증 비밀번호....... .재설정? 확인
 		
 
 	}
@@ -101,6 +103,7 @@ public class LoginController {
 	/*
 	
 	//findId
+	//이메일로 아이디 찾기
 	
 	// 아이디 찾기 페이지 이동
 		@RequestMapping(value="/findIdForm", method=RequestMethod.GET)

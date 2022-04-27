@@ -10,8 +10,8 @@
 	</settings>
 	<typeAliases>
 			<typeAlias alias="adminVO" type="org.exam.www.model.AdminVO"/>
-			<!-- <typeAlias alias="appraisalVO" type="org.exam.www.model.AppraisalVO"/> -->
-	 		<!-- <typeAlias alias="bookshelfVO" type="org.exam.www.model.BookshelfVO"/> -->
+			<typeAlias alias="appraisalVO" type="org.exam.www.model.AppraisalVO"/>
+	 		<typeAlias alias="bookshelfVO" type="org.exam.www.model.BookshelfVO"/>
 		<typeAlias alias="memberVO" type="org.exam.www.model.MemberVO" />
 	</typeAliases>
 	<!-- sql문에서 자료형 지정할때 쓰는 이름 -->
