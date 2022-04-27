@@ -47,7 +47,7 @@
         	$("div").html("");	//재검색
         	$.ajax({	//카카오 검색요청 / [요청]
                 method: "GET",
-                url: "https://dapi.kakao.com/v3/search/book?target=title",
+                url: "https://dapi.kakao.com/v3/search/book?target=isbn",
                 data: { query: $("#query").val(), page: pageNum},
                 headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
             })
