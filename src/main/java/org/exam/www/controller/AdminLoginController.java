@@ -60,7 +60,11 @@ public class AdminLoginController {
 			
 			
 			//return "loginSuccess";
+<<<<<<< HEAD
 			//관리자 로그인 성공시 관리자 페이지로 이동
+=======
+			//로그인 성공 시 관리자 페이지
+>>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
 			System.out.println("성공");
 			return "/loginSuccess";
 			

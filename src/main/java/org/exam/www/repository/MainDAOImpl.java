@@ -1,37 +1,31 @@
-package org.exam.www.service;
+package org.exam.www.repository;
 
 import java.util.List;
 
 import org.exam.www.model.BookshelfVO;
-<<<<<<< HEAD
-=======
 import org.exam.www.model.Commentlist;
-import org.exam.www.repository.MainDAO;
->>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service
-public class MainServiceImpl implements MainService{
+@Repository
+public class MainDAOImpl implements MainDAO{
 	
-<<<<<<< HEAD
-=======
 	@Autowired
-	private MainDAO mainDAO;
+	private SqlSessionTemplate sqlSessionTemplate;
 
 	//인기 도서 리스트
 	@Override
 	public List<BookshelfVO> starlist() {
 		// TODO Auto-generated method stub
-		return mainDAO.starlist();
+		return sqlSessionTemplate.selectList("starlist");
 	}
 
 	//최근 코멘트
 	@Override
 	public List<Commentlist> commentlist() {
 		// TODO Auto-generated method stub
-		return mainDAO.commentlist();
+		return sqlSessionTemplate.selectList("commentlist");
 	}
 
->>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
 }

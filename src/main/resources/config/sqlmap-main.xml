@@ -2,16 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="bookshelfDAO">
+<mapper namespace="mainDAO">
  	
  	
+<<<<<<< HEAD
  	<!-- 인기 도서 리스트-->
  	<select id="starlist" resultType="bookshelf">
+=======
+ 	<!-- 인기 도서 리스트 TOP 3-->
+ 	<select id="starlist" resultType="bookshelfVO">
+>>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
  	SELECT * FROM ( SELECT bookshelf.isbn FROM bookshelf 
 	INNER JOIN appraisal ON bookshelf.book_status_num = appraisal.book_status_num 
 	GROUP BY bookshelf.isbn  ORDER BY AVG(appraisal.star) DESC) 
 	<![CDATA[WHERE ROWNUM <= 3]]>
  	</select>
  	<!-- '<' TAG로 인식  부등호가 문자열이라는 것의 인식하게 해야 한다. <![CDATA[내용]]> 사용 -->
+ 	
+ 	<!-- 최근 코멘트 5개-->
+ 	<select id="commentlist" resultType="Commentlist">
+ 	SELECT * FROM (SELECT 
+     bookshelf.isbn,
+ 	 appraisal.star,
+ 	 appraisal.book_comment,
+ 	 member.mem_id
+	FROM appraisal
+	INNER JOIN bookshelf ON bookshelf.book_status_num = appraisal.book_status_num
+	INNER JOIN member ON bookshelf.mem_num = member.mem_num
+    WHERE appraisal.co_prv='공개' 
+    ORDER BY appraisal.APPRAISAL_NUM DESC) 
+    <![CDATA[WHERE ROWNUM <= 5]]>
+ 	</select>
  	
 </mapper>

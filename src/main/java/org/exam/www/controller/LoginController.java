@@ -31,9 +31,36 @@ public class LoginController {
 	}
 
 	//login
+<<<<<<< HEAD
 		@RequestMapping(value="/loginForm", method=RequestMethod.GET)
 	    public String form(CommandLogin loginCommand, HttpServletRequest request,
 	                    @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
+=======
+	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
+    public String form(LoginCommand loginCommand,
+                    @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
+		
+		if(rememberCookie!=null) {
+            loginCommand.setMem_id(rememberCookie.getValue());
+            loginCommand.setRememberId(true);
+        }
+        
+        return "/loginForm";
+    }
+
+	@RequestMapping(value="/loginForm",method=RequestMethod.POST)
+	public String submit(@Validated LoginCommand loginCommand, MemberVO member, Model model,
+            HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
+		new LoginCommandValidator().validate(loginCommand, errors);
+		
+		if(errors.hasErrors()) {
+			return "/loginForm";
+		}
+
+		try {
+			System.out.println(loginCommand.getMem_id());
+			System.out.println(loginCommand.getMem_pass());
+>>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
 			
 			//HttpSession session = request.getSession();
 			
@@ -47,6 +74,7 @@ public class LoginController {
 				
 			}
 			
+<<<<<<< HEAD
 			if(rememberCookie!=null) {
 	            loginCommand.setMem_id(rememberCookie.getValue());
 	            loginCommand.setRememberId(true);
@@ -60,6 +88,11 @@ public class LoginController {
 		public String submit(@Validated CommandLogin loginCommand, Model model,
 	            HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
 			new LoginCommandValidator().validate(loginCommand, errors);
+=======
+			//return "loginSuccess";
+			//로그인 성공 시 메인 페이지
+			return "/loginpage";
+>>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
 			
 			if(errors.hasErrors()) {
 				System.out.println("오류");
