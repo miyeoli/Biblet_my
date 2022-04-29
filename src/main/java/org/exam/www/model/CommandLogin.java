@@ -1,26 +1,20 @@
 package org.exam.www.model;
-
-
-public class MemberVO {
-
-	private int mem_num;//sequence.nextval로 넣을 것
+//세션 유지
+public class CommandLogin {
+	private int mem_num;
 	private String mem_id;
 	private String mem_pass;
-	private String mem_email;
 	private String mem_name;
+	private boolean rememberId;
 	private int authstatus;
 	
-
-	public MemberVO() {}
-	
-	public MemberVO(String mem_id,String mem_pass,String mem_email,String mem_name,int authstatus) {
-		this.mem_id=mem_id;
-		this.mem_pass=mem_pass;
-		this.mem_email=mem_email;
-		this.mem_name=mem_name;
-		this.authstatus=authstatus;	
+	public void CommandAuthInfo(int mem_num, String mem_id, String mem_name, int authstatus) {
+		this.mem_num = mem_num;
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.authstatus = authstatus;
 	}
-	
+
 	public int getMem_num() {
 		return mem_num;
 	}
@@ -45,14 +39,6 @@ public class MemberVO {
 		this.mem_pass = mem_pass;
 	}
 
-	public String getMem_email() {
-		return mem_email;
-	}
-
-	public void setMem_email(String mem_email) {
-		this.mem_email = mem_email;
-	}
-
 	public String getMem_name() {
 		return mem_name;
 	}
@@ -60,6 +46,15 @@ public class MemberVO {
 	public void setMem_name(String mem_name) {
 		this.mem_name = mem_name;
 	}
+
+	public boolean isRememberId() {
+		return rememberId;
+	}
+
+	public void setRememberId(boolean rememberId) {
+		this.rememberId = rememberId;
+	}
+
 	public int getAuthstatus() {
 		return authstatus;
 	}
@@ -68,15 +63,11 @@ public class MemberVO {
 		this.authstatus = authstatus;
 	}
 
-	//비번 일치 여부
-    public boolean matchPassword(String pw) {
-        return this.mem_pass.equals(pw);
-    }
-
-
-
+	
+	
 	
 
 
-	
+
+
 }

@@ -1,5 +1,6 @@
 package org.exam.www.controller;
 
+import org.exam.www.model.CommandLogin;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -8,7 +9,7 @@ public class LoginCommandValidator implements Validator{
 	
 	@Override
 	public boolean supports(Class<?> arg0) {
-		return LoginCommand.class.isAssignableFrom(arg0);
+		return CommandLogin.class.isAssignableFrom(arg0);
 	}
 	
 	@Override

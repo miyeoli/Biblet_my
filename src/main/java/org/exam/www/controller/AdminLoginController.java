@@ -3,11 +3,10 @@ package org.exam.www.controller;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.exam.www.model.AdminVO;
-import org.exam.www.service.AdminAuthInfo;
-import org.exam.www.service.AdminService;
-import org.exam.www.service.UserService;
-import org.exam.www.util.IdPasswordNotMatchingException;
+import org.exam.www.exception.IdPasswordNotMatchingException;
+import org.exam.www.model.CommandAdminAuthInfo;
+import org.exam.www.model.CommandAdminLogin;
+import org.exam.www.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -16,25 +15,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+
 @Controller
 public class AdminLoginController {
 	
-	
-	private AdminService adminService;
+	private LoginService loginService;
 	
 	@Autowired
-	public void setadminService(AdminService adminService) {
-		this.adminService = adminService;
+	public void setadminService(LoginService loginService) {
+		this.loginService = loginService;
 	}
 	
 	//login
 	@RequestMapping(value="/adminlogin", method=RequestMethod.GET)
-    public String form(AdminLoginCommand adminloginCommand) throws Exception {    
+    public String form(CommandAdminLogin adminloginCommand) throws Exception {    
         return "/adminlogin";
     }
 
 	@RequestMapping(value="/adminlogin",method=RequestMethod.POST)
-	public String submit(@Validated @ModelAttribute("AdminLoginCommand")AdminLoginCommand adminloginCommand, 
+	public String submit(@Validated @ModelAttribute("AdminLoginCommand")CommandAdminLogin adminloginCommand, 
             HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
 		new AdminLoginCommandValidator().validate(adminloginCommand, errors);
 		
@@ -49,7 +49,7 @@ public class AdminLoginController {
 			
 			
 			
-			AdminAuthInfo adminauthInfo = adminService.authenticate(
+			CommandAdminAuthInfo adminauthInfo = loginService.adminauthenticate(
 					adminloginCommand.getAdm_id(), 
 					adminloginCommand.getAdm_pass());
 			
@@ -60,7 +60,7 @@ public class AdminLoginController {
 			
 			
 			//return "loginSuccess";
-			//로그인 성공 시 메인 페이지
+			//관리자 로그인 성공시 관리자 페이지로 이동
 			System.out.println("성공");
 			return "/loginSuccess";
 			
@@ -71,6 +71,14 @@ public class AdminLoginController {
 				return "/adminlogin";
 			}
 	}
+	
+//	//logout
+//	@RequestMapping(value="/logout", method=RequestMethod.GET)
+//	public String logout(HttpSession session) {
+//		session.invalidate(); //세션 제거
+//		return "redirect:/main";
+//	}
+		
 	
 
 }

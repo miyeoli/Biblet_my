@@ -4,7 +4,7 @@
 
 <mapper namespace="AppraisalDAO">
 
-	<select id="listComment" parameterType="String" resultType="AppraisalVO">
+	<select id="listComment" parameterType="String" resultType="Appraisal">
 	SELECT 
 	bookshelf.isbn,
  	 appraisal.star,
