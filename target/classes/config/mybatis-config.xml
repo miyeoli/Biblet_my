@@ -12,7 +12,8 @@
 			<typeAlias alias="adminVO" type="org.exam.www.model.AdminVO"/>
 			<typeAlias alias="appraisalVO" type="org.exam.www.model.AppraisalVO"/>
 	 		<typeAlias alias="bookshelfVO" type="org.exam.www.model.BookshelfVO"/>
-		<typeAlias alias="memberVO" type="org.exam.www.model.MemberVO" />
+			<typeAlias alias="memberVO" type="org.exam.www.model.MemberVO" />
+			<typeAlias alias="commentlist" type="org.exam.www.model.Commentlist" />
 	</typeAliases>
 	<!-- sql문에서 자료형 지정할때 쓰는 이름 -->
 </configuration>

@@ -60,7 +60,7 @@ public class AdminLoginController {
 			
 			
 			//return "loginSuccess";
-			//로그인 성공 시 메인 페이지
+			//로그인 성공 시 관리자 페이지
 			System.out.println("성공");
 			return "/loginSuccess";
 			

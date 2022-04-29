@@ -51,9 +51,7 @@ public class LoginController {
 		if(errors.hasErrors()) {
 			return "/loginForm";
 		}
-		
 
-		
 		try {
 			System.out.println(loginCommand.getMem_id());
 			System.out.println(loginCommand.getMem_pass());
@@ -77,7 +75,7 @@ public class LoginController {
 			
 			//return "loginSuccess";
 			//로그인 성공 시 메인 페이지
-			return "redirect:/main";
+			return "/loginpage";
 			
 			
 			} catch (IdPasswordNotMatchingException e) {
