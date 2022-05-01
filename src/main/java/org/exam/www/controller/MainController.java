@@ -39,8 +39,7 @@ public class MainController {
 		System.out.println("관리자 페이지");
 	}
 	
-<<<<<<< HEAD
-=======
+
 	//마이페이지
 		//검색
 		
@@ -64,11 +63,26 @@ public class MainController {
 	
 	
 	//인기 도서 목록(평가 수 많은 top3 도서 이미지, 제목) 
+//	@ResponseBody
 	@RequestMapping(value="/starlist", method=RequestMethod.GET)
 	public String starlist(Model model) {
 		
 		//ObjectMapper mapper = new ObjectMapper();
->>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
+
+		List <BookshelfVO> list = mainService.starlist();
+		//String jsonText = mapper.writeValueAsString(list);
+		
+		for(BookshelfVO d : list) {
+			System.out.println(d.getIsbn());
+		}
+		
+		model.addAttribute("starlist",list);
+		//model.addAttribute("json",jsonText);
+		
+		return "/starlist";
+		
+	}
+
 
 	
 	
