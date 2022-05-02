@@ -1,15 +1,16 @@
 package org.exam.www.controller;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.exam.www.exception.AuthstatusException;
+import org.exam.www.exception.IdPasswordNotMatchingException;
+import org.exam.www.model.CommandLogin;
+import org.exam.www.model.CommandLogin;
 import org.exam.www.model.MemberVO;
-import org.exam.www.repository.MemberDAO;
-import org.exam.www.service.AuthInfo;
-import org.exam.www.service.UserService;
-import org.exam.www.util.IdPasswordMatchingException;
-import org.exam.www.util.IdPasswordNotMatchingException;
+import org.exam.www.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +23,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 	
-	private UserService userService;
 	
 	@Autowired
-	public void setuserService(UserService userService) {
-		this.userService = userService;
-	}
+	private LoginService loginService;
 	
+//	@Autowired
+//	public void setuserService(LoginService loginService) {
+//		this.loginService = loginService;
+//	}
 
-	//login
+	//일반 로그인
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
-    public String form(LoginCommand loginCommand,
-                    @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
+    public String loginform(CommandLogin loginCommand, HttpServletRequest request,
+            @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
+		
+		//세션 유지 중 로그인 창 요청시 메인 페이지로 이동 
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			Object authInfo = session.getAttribute("authInfo");
+			if(authInfo != null) {
+				return "/main";
+			}
+			
+		}
 		
 		if(rememberCookie!=null) {
             loginCommand.setMem_id(rememberCookie.getValue());
@@ -43,29 +55,37 @@ public class LoginController {
         return "/loginForm";
     }
 
+	
+
 	@RequestMapping(value="/loginForm",method=RequestMethod.POST)
-	public String submit(@Validated LoginCommand loginCommand, MemberVO member, Model model,
+	public String loginsubmit(@Validated CommandLogin loginCommand, Model model,
             HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
 		new LoginCommandValidator().validate(loginCommand, errors);
 		
 		if(errors.hasErrors()) {
+			System.out.println("오류");
 			return "/loginForm";
 		}
 		
+//			if(commandAuthInfo.getAuthstatus() == 0) {
+//				return "/errorAuthstauts";
+//				
+//			}
 
-		
 		try {
 			System.out.println(loginCommand.getMem_id());
 			System.out.println(loginCommand.getMem_pass());
 			
 			
-			
-			AuthInfo authInfo = userService.authenticate(
+			CommandLogin authInfo = loginService.authenticate(
 					loginCommand.getMem_id(), 
-					loginCommand.getMem_pass());
+					loginCommand.getMem_pass(),
+					loginCommand.getAuthstatus());
+			
+			
 			
 			session.setAttribute("authInfo", authInfo);
-			
+
 			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getMem_id());
 			rememberCookie.setPath("/");
 			if(loginCommand.isRememberId()) {
@@ -77,84 +97,27 @@ public class LoginController {
 			
 			//return "loginSuccess";
 			//로그인 성공 시 메인 페이지
-			return "redirect:/main";
-			
+			System.out.println("성공");
+			return "/loginpage";
 			
 			} catch (IdPasswordNotMatchingException e) {
-				errors.reject("IdPasswordMatching");
-				return "/loginForm";
+				errors.rejectValue("mem_pass", "IdPasswordNotMatching");
+				System.out.println("실패");
+				return "/error";
+			} catch (AuthstatusException e) {
+				
+				return "/errorAuthstauts";
 			}
 		
-		//에러 메세지
-		//로그인 화면
-		
-		//아이디 비번 미 입력 시 입력해 주세요
-		//아이디 비번 틀렸을 때 다시 입력해 주세요
-		//아이디 없을 때 회원 정보가 없습니다.
+	}
 
-		
-		//아이디 비번 찾기
-		//아이디 찾기 - 이메일 입력 아이디 확인
-		//비밀번호 찾기 - 이메일 인증 비밀번호....... .재설정? 확인
-		
-
-	}
-	
-	/*
-	
-	//findId
-	//이메일로 아이디 찾기
-	
-	// 아이디 찾기 페이지 이동
-		@RequestMapping(value="/findIdForm", method=RequestMethod.GET)
-		public String findIdView() {
-			return "/findIdForm";
-		}
-		
-	    // 아이디 찾기 실행
-		@RequestMapping(value="/findIdForm", method=RequestMethod.POST)
-		public String findIdAction(MemberVO member, Model model) {
-			MemberVO mem = userService.findById(member);
-			
-			if(member == null) { 
-				model.addAttribute("check", 1);
-			} else { 
-				model.addAttribute("check", 0);
-				model.addAttribute("id", member.getMem_id());
-			}
-			System.out.println(member.getMem_id());
-			return "/findIdForm";
-		}
-		
-		*/
-	
-	
-	/*
-	@RequestMapping(value="/findIdForm", method=RequestMethod.GET)
-	public String findIdView() {
-		return "/findIdForm";
-		
-	}
-	@RequestMapping(value="/findIdForm", method=RequestMethod.POST)
-	public String findId(MemberVO member, Model model) {
-		
-		if(memberDAO.findId(member.getMem_email()) == 0) {
-			model.addAttribute("msg","이메일을 확인해주세요");
-		}
-		
-		return "/findIdForm";
-		
-	}
-	*/
-	
-	//findPass
 	
 	
 	//logout
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate(); //세션 제거
-		return "redirect:/main";
+		return "/main";
 	}
 	
 	

@@ -42,6 +42,7 @@
             
             .done(function (msg) {   //검색 결과 담기 / [응답]	
                 console.log(msg);
+            	
                     $("div").append("<img src='" + msg.documents[0].thumbnail + "'/>");
                     $("div").append("<h2>" + msg.documents[0].title + "</h2>");
                     $("div").append("<strong>일련번호:</strong> " + msg.documents[0].isbn + "<br>");   //일련번호

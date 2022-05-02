@@ -9,6 +9,6 @@
 <title>로그인 성공</title>
 </head>
 <body>
-	<p>로그인 성공</p>
+	<p>관리자 페이지입니다.</p>
 </body>
 </html>

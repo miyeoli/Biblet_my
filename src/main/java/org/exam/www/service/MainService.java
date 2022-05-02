@@ -2,8 +2,8 @@ package org.exam.www.service;
 
 import java.util.List;
 
-import org.exam.www.model.AppraisalVO;
 import org.exam.www.model.BookshelfVO;
+import org.exam.www.model.Commentlist;
 
 public interface MainService {
 
@@ -13,5 +13,6 @@ public interface MainService {
 		
 		
 	//최근 코멘트
-	public List<AppraisalVO> listcomment();
+	public List<Commentlist> commentlist();
+
 }

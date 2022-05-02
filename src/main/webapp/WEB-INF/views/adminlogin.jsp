@@ -7,18 +7,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><spring:message code="login.title"/></title>
+<title><spring:message code="admin.title"/></title>
 </head>
 <body>
 	<h2>관리자로그인</h2>
 	
-	<form action="<c:url value='/adminlogin'/>" commandname="AdminLoginCommand" method="post">
-	아이디:<input type="text" id="adm_id" name="adm_id"><br>
-	비밀번호:<input type="password" id="adm_pass" name="adm_pass">
-	<br>
-	<input type="submit" value="로그인">
-	<!-- 회원가입 -->
-	</form>
+	<form:form commandName="commandAdminLogin">
+		<form:errors />
+		<p>
+			<label> 
+				<spring:message code="adm_id" /> 
+				<form:input path="adm_id" /> 
+				<form:errors path="adm_id" />
+			</label>
+		</p>
+		<p>
+			<label> 
+				<spring:message code="adm_pass" /> 
+				<form:input type="password" path="adm_pass" /> 
+				<form:errors path="adm_pass" />
+			</label>
+		</p>
+		<p>
+			<label> 
+				<spring:message code="rememberAdmId" /> 
+				<form:checkbox path="rememberAdmId" />
+			</label>
+		</p>
+
+		<input type="submit" value="<spring:message code="admin.btn"/>">
+	</form:form>
 
 </body>
 </html>

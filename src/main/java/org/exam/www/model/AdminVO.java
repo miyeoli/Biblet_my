@@ -8,13 +8,13 @@ public class AdminVO {
 	private String adm_id;
 	private String adm_pass;
 	private String adm_email;
-	private String adm_authstatus;
+	private int adm_authstatus;
 	private String securitycode;
 	
 	
 	public AdminVO() {}
 	
-	public AdminVO(String adm_name, String adm_id, String adm_pass, String adm_email, String adm_authstatus, String securitycode) {
+	public AdminVO(String adm_name, String adm_id, String adm_pass, String adm_email, int adm_authstatus, String securitycode) {
 		this.adm_name=adm_name;
 		this.adm_id=adm_id;
 		this.adm_pass=adm_pass;
@@ -55,10 +55,10 @@ public class AdminVO {
 	public void setAdm_email(String adm_email) {
 		this.adm_email = adm_email;
 	}
-	public String getAdm_authstatus() {
+	public int getAdm_authstatus() {
 		return adm_authstatus;
 	}
-	public void setAdm_authstatus(String adm_authstatus) {
+	public void setAdm_authstatus(int adm_authstatus) {
 		this.adm_authstatus = adm_authstatus;
 	}
 	public String getSecuritycode() {
