@@ -5,8 +5,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+<<<<<<< HEAD
 import org.exam.www.exception.AuthstatusException;
 import org.exam.www.exception.IdPasswordNotMatchingException;
+=======
+import org.exam.www.exception.IdPasswordNotMatchingException;
+import org.exam.www.model.CommandAdminAuthInfo;
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 import org.exam.www.model.CommandAdminLogin;
 import org.exam.www.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +29,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminLoginController {
 	
+<<<<<<< HEAD
 	@Autowired
 	private LoginService loginService;
+=======
+	private LoginService loginService;
+	
+	@Autowired
+	public void setadminService(LoginService loginService) {
+		this.loginService = loginService;
+	}
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 	
 //	@Autowired
 //	public void setadminService(LoginService loginService) {
@@ -34,6 +48,7 @@ public class AdminLoginController {
 	
 	//관리자 로그인
 	@RequestMapping(value="/adminlogin", method=RequestMethod.GET)
+<<<<<<< HEAD
     public String adminform(CommandAdminLogin adminloginCommand, HttpServletRequest request,
     		@CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
     
@@ -60,6 +75,15 @@ public class AdminLoginController {
 	@RequestMapping(value="/adminlogin",method=RequestMethod.POST)
 	public String adminsubmit(@Validated CommandAdminLogin adminloginCommand, 
             HttpSession session, HttpServletResponse response, Model model, Errors errors) throws Exception {
+=======
+    public String form(CommandAdminLogin adminloginCommand) throws Exception {    
+        return "/adminlogin";
+    }
+
+	@RequestMapping(value="/adminlogin",method=RequestMethod.POST)
+	public String submit(@Validated @ModelAttribute("AdminLoginCommand")CommandAdminLogin adminloginCommand, 
+            HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 		new AdminLoginCommandValidator().validate(adminloginCommand, errors);
 		
 		if(errors.hasErrors()) {
@@ -70,8 +94,15 @@ public class AdminLoginController {
 		try {
 			System.out.println(adminloginCommand.getAdm_id());
 			System.out.println(adminloginCommand.getAdm_pass());
+<<<<<<< HEAD
 
 			CommandAdminLogin adminauthInfo = loginService.adminauthenticate(
+=======
+			
+			
+			
+			CommandAdminAuthInfo adminauthInfo = loginService.adminauthenticate(
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 					adminloginCommand.getAdm_id(), 
 					adminloginCommand.getAdm_pass(),
 					adminloginCommand.getAdm_authstatus());
@@ -90,6 +121,14 @@ public class AdminLoginController {
 			
 			
 			//return "loginSuccess";
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+			//관리자 로그인 성공시 관리자 페이지로 이동
+=======
+			//로그인 성공 시 관리자 페이지
+>>>>>>> 37b08e76a3ade3cc066d049aafe0b085fb59deff
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 			System.out.println("성공");
 			//성공시 관리자 페이지로 이동
 			return "/loginSuccess";

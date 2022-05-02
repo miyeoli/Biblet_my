@@ -12,7 +12,11 @@
  	<!-- admin로그인 -->
  	<!--  AND ADM_AUTHSTATUS = 1  -->
  	<select id="selectByAdminId" parameterType="String" resultType="admin">
+<<<<<<< HEAD
   		SELECT * FROM ADMINISTRATOR WHERE adm_id=#{adm_id}
+=======
+  		SELECT * FROM ADMINISTRATOR WHERE adm_id=#{adm_id} AND ADM_AUTHSTATUS = '1'
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
  	</select>
 
  	

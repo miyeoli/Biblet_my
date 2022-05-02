@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 	
+<<<<<<< HEAD
 	
 	@Autowired
 	private LoginService loginService;
@@ -31,10 +32,22 @@ public class LoginController {
 //	public void setuserService(LoginService loginService) {
 //		this.loginService = loginService;
 //	}
+=======
+	private LoginService loginService;
+	
+	@Autowired
+	public void setuserService(LoginService loginService) {
+		this.loginService = loginService;
+	}
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 
 	//일반 로그인
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
+<<<<<<< HEAD
     public String loginform(CommandLogin loginCommand, HttpServletRequest request,
+=======
+    public String form(CommandLogin loginCommand, HttpServletRequest request,
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
             @CookieValue(value="REMEMBER", required=false) Cookie rememberCookie) throws Exception {    
 		
 		//세션 유지 중 로그인 창 요청시 메인 페이지로 이동 
@@ -56,6 +69,7 @@ public class LoginController {
     }
 
 	
+<<<<<<< HEAD
 
 	@RequestMapping(value="/loginForm",method=RequestMethod.POST)
 	public String loginsubmit(@Validated CommandLogin loginCommand, Model model,
@@ -110,6 +124,62 @@ public class LoginController {
 			}
 		
 	}
+=======
+
+		@RequestMapping(value="/loginForm",method=RequestMethod.POST)
+		public String submit(@Validated CommandLogin loginCommand, Model model,
+	            HttpSession session, HttpServletResponse response, Errors errors) throws Exception {
+			new LoginCommandValidator().validate(loginCommand, errors);
+			
+			if(errors.hasErrors()) {
+				System.out.println("오류");
+				return "/loginForm";
+			}
+			
+//			if(commandAuthInfo.getAuthstatus() == 0) {
+//				return "/errorAuthstauts";
+//				
+//			}
+
+			try {
+				System.out.println(loginCommand.getMem_id());
+				System.out.println(loginCommand.getMem_pass());
+				
+				
+				CommandLogin authInfo = loginService.authenticate(
+						loginCommand.getMem_id(), 
+						loginCommand.getMem_pass(),
+						loginCommand.getAuthstatus());
+				
+				
+				
+				session.setAttribute("authInfo", authInfo);
+
+				Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getMem_id());
+				rememberCookie.setPath("/");
+				if(loginCommand.isRememberId()) {
+				rememberCookie.setMaxAge(60*60*24*7);
+				} else {
+				rememberCookie.setMaxAge(0);
+				}
+				response.addCookie(rememberCookie);
+				
+				//return "loginSuccess";
+				//로그인 성공 시 메인 페이지
+				System.out.println("성공");
+				return "/loginPage";
+				
+				} catch (IdPasswordNotMatchingException e) {
+					errors.rejectValue("mem_pass", "IdPasswordNotMatching");
+					System.out.println("실패");
+					return "/error";
+				} catch (AuthstatusException e) {
+					
+					return "/errorAuthstauts";
+				}
+			
+		}
+>>>>>>> d3da63c6bfb6165d8cf7f80c192e29c21d2e6b89
 
 	
 	
