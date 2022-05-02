@@ -20,6 +20,7 @@ public class LoginDAOImpl implements LoginDAO{
 		return sqlSessionTemplate.selectOne("selectById", mem_id);
 	}
 
+	//관리자 로그인
 	@Override
 	public AdminVO selectByAdminId(String adm_id) {
 		// TODO Auto-generated method stub

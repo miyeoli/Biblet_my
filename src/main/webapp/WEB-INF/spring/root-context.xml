@@ -54,7 +54,6 @@
 			<list>
 				<value>classpath:config/sqlmap-appraisal.xml</value>
 				<value>classpath:config/sqlmap-login.xml</value>
-				<value>classpath:config/sqlmap-main.xml</value>
 			</list>
 		</property>
 	</bean>
