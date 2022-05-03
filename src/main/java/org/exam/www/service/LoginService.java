@@ -5,7 +5,7 @@ import org.exam.www.model.CommandAdminLogin;
 import org.exam.www.model.CommandLogin;
 import org.exam.www.model.MemberVO;
 
-//로그인 서비스
+
 public interface LoginService {
 	 
 	
@@ -18,6 +18,7 @@ public interface LoginService {
 	//아이디 찾기
 	public String findById(String mem_email) throws Exception;
 
-	
+	//비밀번호 재설정
+	//public void findBypw(String mem_email) throws Exception;
 
 }

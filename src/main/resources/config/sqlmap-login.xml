@@ -26,7 +26,7 @@
  	</select>
  	
  	<!-- 비밀번호 재설정 -->
- 	<select id="newpassword" parameterType="member">
+ 	<select id="findByPw" parameterType="member">
  		UPDATE member set mem_pass=#{mem_pass} where mem_email=#{mem_email}
  	</select>
  	 

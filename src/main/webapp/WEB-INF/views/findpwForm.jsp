@@ -9,18 +9,18 @@
 <title>아이디 찾기</title>
 </head>
 <body>
-
-	<h3>아이디 찾기 검색결과</h3>
-			
-	<div>
-		<h5>
-			${ mem_id }
-		</h5>
-		<p>
-			<button type="button" id=loginBtn onclick="location.href='loginForm'">Login</button>
-			<button type="button" onclick="history.go(-1);">Cancel</button>
-		</p>
-	</div>
-	
+	<form action="<c:url value='/findId'/>" method="post">
+	<h2>비밀번호 찾기</h2>
+		<div>
+			<p>
+				<label>Email</label>
+				<input type="text" id="mem_email" name="mem_email">
+			</p>
+			<p>
+				<button type="submit" id=findBtn>find</button>
+				<button type="button" onclick="history.go(-1);">Cancel</button>
+			</p>
+		</div>
+	</form>
 </body>
 </html>

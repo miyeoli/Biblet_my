@@ -12,6 +12,7 @@ import org.exam.www.model.CommandLogin;
 import org.exam.www.model.CommandLogin;
 import org.exam.www.model.MemberVO;
 import org.exam.www.service.LoginService;
+import org.exam.www.service.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,8 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private MailSendService mailSendService;
 	
 	//일반 로그인
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
@@ -111,15 +114,25 @@ public class LoginController {
 	@RequestMapping(value="/findId", method=RequestMethod.POST)
 	public String findid(MemberVO member, Model model, String mem_email) throws Exception {
 		model.addAttribute("mem_id", loginService.findById(mem_email));
+        if(loginService.findById(mem_email) == null) {
+        	System.out.println("정보가 없습니다.");
+            return "/error";
+        }
 		return "/findId";
 		
 	}
 	
-//	@RequestMapping(value="/findId", method=RequestMethod.POST)
-//	public String findid(@RequestParam("mem_email") String mem_email, Model model) throws Exception{
-//		model.addAttribute("mem_id", loginService.findById(mem_email));
-//		return "/findid";
-//	}
+	//findPw
+	@RequestMapping(value="/findpwForm", method=RequestMethod.GET)
+	public String findpw() {
+		return "/findpwForm";
+	}
+	
+	@RequestMapping(value="/findId", method=RequestMethod.POST)
+	public String findid() throws Exception{
+		
+		return "/loginForm";
+	}
 	
 	
 

@@ -59,16 +59,40 @@ public class LoginServiceImpl implements LoginService{
 	@Override
 	public String findById(String mem_email) throws Exception {
 		String mem_id = loginDAO.findById(mem_email);
-        if(mem_id == null) {
-        	System.out.println("정보가 없습니다.");
-            throw new IdPasswordNotMatchingException();
-        }
+//        if(mem_id == null) {
+//        	System.out.println("정보가 없습니다.");
+//            throw new IdPasswordNotMatchingException();
+//        }
 		
 		return mem_id;
 		//return loginDAO.findById(mem_email);
 	}
+	
 
+//	//비밀번호 재설정
+//	@Override
+//	public void findBypw(String mem_email) throws Exception {
+//		String mem_pass = 
+//		loginDAO.findByPw(mem_pass, mem_email);
+//		
+//	}
 
-		
+}	
 
-}
+//	private void send_mail(MemberVO member, String string) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
+//	//임시 비밀번호 생성
+//	String pw = "";
+//	for(int i=0; i<12; i++) {
+//		pw += (char) ((Math.random() * 26) + 97);
+//	}
+//	member.setMem_pass(pw);
+//	//비밀번호 변경
+//	loginDAO.findByPw(member);
+//	//메일 발송
+//	//send_mail(member, "findBypw");
+	
+
