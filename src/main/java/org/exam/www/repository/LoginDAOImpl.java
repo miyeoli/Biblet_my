@@ -27,6 +27,15 @@ public class LoginDAOImpl implements LoginDAO{
 		return sqlSessionTemplate.selectOne("selectByAdminId", adm_id);
 	}
 
+	//아이디 찾기
+	@Override
+	public String findById(String mem_email) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.selectOne("findById", mem_email);
+	}
+	
+	//비밀번호 재설정
+
 	
 
 

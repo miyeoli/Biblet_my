@@ -10,6 +10,9 @@ public interface LoginDAO {
 	
 	//관리자 로그인
 	public AdminVO selectByAdminId(String adm_id);
+	
+	//아이디 찾기
+	public String findById(String mem_email);
 
 	
 	

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.exam.www.exception.AuthstatusException;
 import org.exam.www.exception.IdPasswordNotMatchingException;
+import org.exam.www.model.AdminVO;
 import org.exam.www.model.CommandLogin;
 import org.exam.www.model.CommandLogin;
 import org.exam.www.model.MemberVO;
@@ -17,22 +18,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class LoginController {
 
-	
 	@Autowired
 	private LoginService loginService;
 	
-//	@Autowired
-//	public void setuserService(LoginService loginService) {
-//		this.loginService = loginService;
-//	}
-
-
 	//일반 로그인
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
     public String loginform(CommandLogin loginCommand, HttpServletRequest request,
@@ -44,19 +40,14 @@ public class LoginController {
 			Object authInfo = session.getAttribute("authInfo");
 			if(authInfo != null) {
 				return "/main";
-			}
-			
+			}	
 		}
-		
 		if(rememberCookie!=null) {
             loginCommand.setMem_id(rememberCookie.getValue());
             loginCommand.setRememberId(true);
         }
-        
         return "/loginForm";
     }
-
-	
 
 	@RequestMapping(value="/loginForm",method=RequestMethod.POST)
 	public String loginsubmit(@Validated CommandLogin loginCommand, Model model,
@@ -68,7 +59,6 @@ public class LoginController {
 			return "/loginForm";
 		}
 		
-
 		try {
 			System.out.println(loginCommand.getMem_id());
 			System.out.println(loginCommand.getMem_pass());
@@ -78,9 +68,7 @@ public class LoginController {
 					loginCommand.getMem_id(), 
 					loginCommand.getMem_pass(),
 					loginCommand.getAuthstatus());
-			
-			
-			
+				
 			session.setAttribute("authInfo", authInfo);
 
 			Cookie rememberCookie = new Cookie("REMEMBER", loginCommand.getMem_id());
@@ -96,6 +84,7 @@ public class LoginController {
 			//로그인 성공 시 메인 페이지
 			System.out.println("성공");
 			return "/loginpage";
+			
 			} catch (IdPasswordNotMatchingException e) {
 				errors.rejectValue("mem_pass", "IdPasswordNotMatching");
 				System.out.println("실패");
@@ -104,7 +93,6 @@ public class LoginController {
 				
 				return "/errorAuthstauts";
 			}
-		
 	}
 	
 	//logout
@@ -113,6 +101,26 @@ public class LoginController {
 		session.invalidate(); //세션 제거
 		return "/main";
 	}
+	
+	//findId
+	@RequestMapping(value="/findIdForm", method=RequestMethod.GET)
+	public String findIdView() {
+		return "/findIdForm";
+	}
+	
+	@RequestMapping(value="/findId", method=RequestMethod.POST)
+	public String findid(MemberVO member, Model model, String mem_email) throws Exception {
+		
+		model.addAttribute("mem_id", loginService.findById(mem_email));
+		return "/findId";
+		
+	}
+	
+//	@RequestMapping(value="/findId", method=RequestMethod.POST)
+//	public String findid(@RequestParam("mem_email") String mem_email, Model model) throws Exception{
+//		model.addAttribute("mem_id", loginService.findById(mem_email));
+//		return "/findid";
+//	}
 	
 	
 

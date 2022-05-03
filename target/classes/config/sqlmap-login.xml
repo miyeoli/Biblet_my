@@ -13,12 +13,21 @@
  	<!--  AND ADM_AUTHSTATUS = 1  -->
  	<select id="selectByAdminId" parameterType="String" resultType="admin">
   		SELECT * FROM ADMINISTRATOR WHERE adm_id=#{adm_id}
- 	</select>
-
+ 	</select> 	
  	
  	<!-- 아이디 찾기 -->
-<!--  	<select id="findById" resultType="memberVO"> -->
-<!--   		SELECT mem_id FROM member WHERE mem_email=#{mem_email} -->
-<!--  	</select> -->
+ 	<select id="findById" parameterType="String" resultType="String">
+  		SELECT mem_id FROM member WHERE mem_email=#{mem_email}
+ 	</select>
  	
+ 	<!-- 회원조회 -->
+ 	<select id="selectMember" parameterType="String" resultType="member">
+ 		SELECT * FROM member WHERE mem_email=#{mem_email}
+ 	</select>
+ 	
+ 	<!-- 비밀번호 재설정 -->
+ 	<select id="newpassword" parameterType="member">
+ 		UPDATE member set mem_pass=#{mem_pass} where mem_email=#{mem_email}
+ 	</select>
+ 	 
 </mapper>

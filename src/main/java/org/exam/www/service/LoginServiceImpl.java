@@ -55,13 +55,18 @@ public class LoginServiceImpl implements LoginService{
 
 	}
 
-	
-
-
-
-
-
-	
+	//아이디 찾기
+	@Override
+	public String findById(String mem_email) throws Exception {
+		String mem_id = loginDAO.findById(mem_email);
+        if(mem_id == null) {
+        	System.out.println("정보가 없습니다.");
+            throw new IdPasswordNotMatchingException();
+        }
+		
+		return mem_id;
+		//return loginDAO.findById(mem_email);
+	}
 
 
 		

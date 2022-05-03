@@ -3,6 +3,7 @@ package org.exam.www.service;
 
 import org.exam.www.model.CommandAdminLogin;
 import org.exam.www.model.CommandLogin;
+import org.exam.www.model.MemberVO;
 
 //로그인 서비스
 public interface LoginService {
@@ -14,7 +15,8 @@ public interface LoginService {
 	//관리자 로그인
 	public CommandAdminLogin adminauthenticate(String adm_id, String adm_pass, int adm_authstatus) throws Exception;
 	
-	
+	//아이디 찾기
+	public String findById(String mem_email) throws Exception;
 
 	
 

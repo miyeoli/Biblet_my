@@ -27,6 +27,7 @@ public class MainController {
 	}
 	
 	//회원가입 페이지 이동
+	
 	//로그인 페이지 이동
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public void login() {
