@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script>
-	$(function(){
-		$("#loginBtn").click(function(){
-			location.href='/loginForm';
-		})
-	})
-</script>
+<!-- <script> -->
+<!-- // 	$(function(){ -->
+<!-- // 		$("#loginBtn").click(function(){ -->
+<!-- // 			location.href='../loginForm'; -->
+<!-- // 		}) -->
+<!-- // 	}) -->
+<!-- </script> -->
 <title>아이디 찾기</title>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			${ mem_id }
 		</h5>
 		<p>
-			<button type="button" id=loginBtn >Login</button>
+			<button type="button" id=loginBtn onclick="location.href='loginForm'">Login</button>
 			<button type="button" onclick="history.go(-1);">Cancel</button>
 		</p>
 	</div>

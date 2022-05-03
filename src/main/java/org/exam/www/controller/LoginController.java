@@ -110,7 +110,6 @@ public class LoginController {
 	
 	@RequestMapping(value="/findId", method=RequestMethod.POST)
 	public String findid(MemberVO member, Model model, String mem_email) throws Exception {
-		
 		model.addAttribute("mem_id", loginService.findById(mem_email));
 		return "/findId";
 		
