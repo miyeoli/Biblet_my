@@ -52,7 +52,6 @@
 			value="classpath:config/mybatis-config.xml" />
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:config/sqlmap-appraisal.xml</value>
 				<value>classpath:config/sqlmap-login.xml</value>
 			</list>
 		</property>

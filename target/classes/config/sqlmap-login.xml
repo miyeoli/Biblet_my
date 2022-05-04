@@ -24,10 +24,6 @@
  	<select id="selectMember" parameterType="String" resultType="member">
  		SELECT * FROM member WHERE mem_email=#{mem_email}
  	</select>
- 	
- 	<!-- 비밀번호 재설정 -->
- 	<select id="findByPw" parameterType="member">
- 		UPDATE member set mem_pass=#{mem_pass} where mem_email=#{mem_email}
- 	</select>
+ 
  	 
 </mapper>

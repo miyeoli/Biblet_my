@@ -33,6 +33,8 @@
 			</label>
 		</p>
 		<input type="submit" value="<spring:message code="login.btn"/>">
+		<button type="button" id=findBtn onclick="location.href='findIdForm'">FIND</button>
+	
 	</form:form>
 
 </body>

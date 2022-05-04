@@ -16,10 +16,7 @@ public interface LoginDAO {
 	
 	//아이디 찾기
 	public String findById(String mem_email);
-	
-	//비밀번호 재설정
-	public int findByPw(String mem_pass, String mem_email);
-	
+
 		
 
 

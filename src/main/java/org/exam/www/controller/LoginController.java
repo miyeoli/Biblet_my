@@ -12,7 +12,6 @@ import org.exam.www.model.CommandLogin;
 import org.exam.www.model.CommandLogin;
 import org.exam.www.model.MemberVO;
 import org.exam.www.service.LoginService;
-import org.exam.www.service.MailSendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,8 +28,6 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
-	@Autowired
-	private MailSendService mailSendService;
 	
 	//일반 로그인
 	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
@@ -121,20 +118,5 @@ public class LoginController {
 		return "/findId";
 		
 	}
-	
-	//findPw
-	@RequestMapping(value="/findpwForm", method=RequestMethod.GET)
-	public String findpw() {
-		return "/findpwForm";
-	}
-	
-	@RequestMapping(value="/findId", method=RequestMethod.POST)
-	public String findid() throws Exception{
-		
-		return "/loginForm";
-	}
-	
-	
-
 	
 }

@@ -40,48 +40,6 @@ public class MainController {
 	}
 	
 
-	//마이페이지
-		//검색
-		
-		
-//	//코멘트리스트(평가 페이지)
-//	@RequestMapping(value="/commentlist", method= RequestMethod.GET)
-//	public String comment(Model model) {
-//		System.out.println("도서 코멘트 리스트 페이지");
-//		
-//		
-//		List <Commentlist> list = mainService.commentlist();
-//		
-//		for(Commentlist d2 : list) {
-//			System.out.println(d2.getBook_comment());
-//		}
-//		model.addAttribute("commentlist",list);
-//		
-//		return "/commentlist";
-//	}
-//	
-//	
-//	
-//	//인기 도서 목록(평가 수 많은 top3 도서 이미지, 제목) 
-////	@ResponseBody
-//	@RequestMapping(value="/starlist", method=RequestMethod.GET)
-//	public String starlist(Model model) {
-//		
-//		//ObjectMapper mapper = new ObjectMapper();
-//
-//		List <BookshelfVO> list = mainService.starlist();
-//		//String jsonText = mapper.writeValueAsString(list);
-//		
-//		for(BookshelfVO d : list) {
-//			System.out.println(d.getIsbn());
-//		}
-//		
-//		model.addAttribute("starlist",list);
-//		//model.addAttribute("json",jsonText);
-//		
-//		return "/starlist";
-//		
-//	}
 
 
 	

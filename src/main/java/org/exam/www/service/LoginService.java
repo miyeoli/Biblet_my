@@ -18,7 +18,4 @@ public interface LoginService {
 	//아이디 찾기
 	public String findById(String mem_email) throws Exception;
 
-	//비밀번호 재설정
-	//public void findBypw(String mem_email) throws Exception;
-
 }

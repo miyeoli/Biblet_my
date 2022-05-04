@@ -45,22 +45,4 @@ public class LoginDAOImpl implements LoginDAO{
 		return sqlSessionTemplate.selectOne("findById", mem_email);
 	}
 
-	//비밀번호 재설정
-	@Override
-	public int findByPw(String mem_pass, String mem_email) {
-		// TODO Auto-generated method stub
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_pass", mem_pass);
-		map.put("mem_email", mem_email);
-		return sqlSessionTemplate.update("findByPw", map);
-	}
-
-	
-	
-
-	
-
-
-	
-
 }
